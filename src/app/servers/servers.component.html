@@ -1,0 +1,22 @@
+<div class="mat-form-field" appearance="outline">
+    <label for="sever-name" class="mat-form-field-label">
+        Server Name
+    </label>
+    <input
+        type="text"
+        name="server-name"
+        class="mat-input-element"
+        matInput
+        (input)="onUpdateServerName($event)"
+    >
+    <p>{{ serverName }}</p>
+</div>
+<button 
+class="mat-button mat-flat-button mat-primary"
+[disabled]="!allowNewServer"
+(click)="onCreateServer()">
+    Add Server
+</button>
+<p>{{ serverCreationStatus }}</p>
+<app-server></app-server>
+<app-server></app-server>
