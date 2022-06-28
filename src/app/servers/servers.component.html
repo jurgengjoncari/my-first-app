@@ -1,22 +1,25 @@
-<div class="mat-form-field" appearance="outline">
-    <label for="sever-name" class="mat-form-field-label">
+<mat-form-field>
+    <mat-label for="sever-name">
         Server Name
-    </label>
+    </mat-label>
     <input
+        matInput
         type="text"
         name="server-name"
-        class="mat-input-element"
-        matInput
-        (input)="onUpdateServerName($event)"
+        [(ngModel)]="serverName"
     >
-    <p>{{ serverName }}</p>
-</div>
-<button 
-class="mat-button mat-flat-button mat-primary"
-[disabled]="!allowNewServer"
-(click)="onCreateServer()">
+</mat-form-field>
+<button
+    mat-raised-button
+    color="primary"
+    [disabled]="!allowNewServer"
+    (click)="onCreateServer()"
+>
     Add Server
 </button>
-<p>{{ serverCreationStatus }}</p>
-<app-server></app-server>
-<app-server></app-server>
+<!-- <p>{{ serverCreationStatus }}</p> -->
+<p *ngIf="serverCreated else noServer">Server was created, server name is {{ serverName }}</p>
+<ng-template #noServer>
+    <p>No server was created!</p>
+</ng-template>
+<app-server *ngFor="let server of servers"></app-server>
